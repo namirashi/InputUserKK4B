@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YG Entertainment</title>
+</head>
+<body>
+  <h1>XI RPL 5 / 20</h1>
+  <h2>Pendaftaran YG Entertainment</h2>
+  <div>
+    <form>
+      <table>
+        <tr>
+          <td><label for="Nama">Nama Lengkap</label></td>
+          <td>:</td>
+          <td><input type="text" id="name" placeholder="Masukkan Nama"></td>
+        </tr>
+        <tr>
+          <td><label for="Email">Email</label></td>
+          <td>:</td>
+          <td><input type="text" id="email" placeholder="Masukkan Email"></td>
+        </tr>
+        <tr>
+          <td><label for="Negara">Negara</label></td>
+          <td>:</td>
+          <td><input type="text" id="negarA" list="Negara"></td>
+          <datalist id="Negara">
+            <option value="Indonesia"></option>
+            <option value="Brunei Darussalam"></option>
+            <option value="Korea Selatan"></option>
+            <option value="Jepang"></option>
+            <option value="Amerika"></option>
+            <option value="Australia"></option>
+            <option value="Swiss"></option>
+          </datalist>
+        </tr>
+        <tr>
+          <td><label for="TahunLahir">Tahun Lahir</label></td>
+          <td>:</td>
+          <td><input type="number" min="2004" max="2019" id="TahunLahir"/></td>
+        </tr>
+        <tr>
+          <td><label>Jenis Kelamin</label></td>
+          <td>:</td>
+          <td>
+            <input type="radio" id="JenisKelamin" name="JenisKelamin" value="Pria">Pria<br>
+            <input type="radio" id="JenisKelamin" name="JenisKelamin" value="Wanita">Wanita<br>
+            <input type="radio" id="JenisKelamin" name="JenisKelamin" value="Tidak Terdefinisi">Tidak Terdefinisi
+          </td>
+        </tr>
+        <tr>
+          <td><button type="button" onclick="myFunction()">Daftar</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <div id="Tampilan">
+
+  </div>
+  <script>
+    function myFunction() {
+      var Nama = document.getElementById('name');
+      var Email = document.getElementById('email');
+      var Negara = document.getElementById('negarA', 'Negara');
+      var TahunLahir = document.getElementById('TahunLahir');
+      var JenisKelamin = document.getElementsByName('JenisKelamin');
+
+      var opsiNama = Nama.value;
+      var opsiEmail = Email.value;
+      var opsiNegara = Negara.value;
+      var opsiumur = TahunLahir.value;
+      var realumur = 2019-TahunLahir.value;
+      var opsiJenisKelamin = '';
+      for (var i = 0; i < JenisKelamin.length; i++) {
+        if(JenisKelamin[i].checked == true){
+          opsiJenisKelamin = JenisKelamin[i].value;
+          break;
+        }
+      }
+      let Tampilken = document.getElementById('Tampilan');
+      let Tertampil = '';
+      if(opsiNama == '' ||
+      opsiEmail == '' ||
+      opsiNegara == '' ||
+      opsiumur == '' ||
+      opsiJenisKelamin == '') {
+        if(opsiNama == '') Tertampil += '<b>Mohon Masukkan Nama Anda!</b><br></p>';
+        if(opsiEmail == '') Tertampil += '<b>Mohon Masukkan Email Anda!</b><br></p>';
+        if(opsiNegara == '') Tertampil += '<b>Mohon Pilih Negara Anda!</b><br></p>';
+        if(opsiumur == '') Tertampil += '<b>Mohon Masukkan Tahun Lahir Anda!</b><br></p>';
+        if(opsiJenisKelamin == '') Tertampil += '<b>Mohon Pilih Jenis Kelamin Anda!</b></p>';
+      }else{
+        Tertampil += `<b><h3>Selamat Datang di YG Entertainment!</h3>
+        <table>
+		      <tr>
+		        <td>Nama Lengkap </td>
+		        <td>:</td>
+		        <td>${opsiNama}</td>
+		      </tr>
+		      <tr>
+		        <td>Email </td>
+		        <td>:</td>
+		        <td>${opsiEmail}</td>
+		      </tr>
+		      <tr>
+		        <td>Jenis Kelamin </td>
+		        <td>:</td>
+		        <td>${opsiJenisKelamin}</td>
+		      </tr>
+		      <tr>
+		        <td>Negara </td>
+		        <td>:</td>
+		        <td>${opsiNegara}</td>
+		      </tr>
+		      <tr>
+		        <td>Umur </td>
+		        <td>:</td>
+		        <td>${realumur}</td>
+		      </tr>
+		    </table>`;
+		  }
+		Tampilken.innerHTML = Tertampil;
+	}
+</script>
+</body>
+</html>
